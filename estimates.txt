@@ -1,0 +1,19 @@
+The RTO represents the time it takes for the database to recover and be fully functional in the event of AZ outage.
+1. Minimum RTO for a single AZ outage:
+With a Multi-AZ configuration, RTO can be minimized as the database is replicated synchronously to the standby database
+from the primary one. The exact time of failover process depends on the size of database and connection, mostly within.
+few minutes
+2. Minimum RTO for a single region outage:
+Recovering from a regional outage involves the failover of the entire database to new region. The process includes
+provisioning new resources, restoring data, redirecting traffic. Depending on the complexity of database, the RTO can
+be from several minutes to hours.
+
+The RPO indicates the maximum amount of data loss during the recovery process when AZ outage happens.
+3. Minimum RPO for a single AZ outage:
+Same as the RTO for a single AZ outage, since the database is replicated synchronously and in real-time, the achievable
+RPO is relatively low. Data replication process can be transparent and result in minimal data loss, generally within
+seconds or milliseconds.
+4. Minimum RPO for a single region outage
+The achievement of RPO depends on the mechanism of data replication between regions. With asynchronous mechanism, data
+loss amount can be determined by replication lag. On the other hand, with synchronous one, the RPO can be relatively low
+similar to the RPO of a single AZ outage.
